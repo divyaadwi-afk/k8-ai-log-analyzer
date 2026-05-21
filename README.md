@@ -1,21 +1,23 @@
 # K8s AI Log Analyzer
 
-A Kubernetes-based log analysis project built using Flask, Docker, Minikube, and OpenAI.
+A Kubernetes-based incident analysis project built using Flask, Docker, Minikube, and OpenAI.
 
-This project simulates application logs inside Kubernetes pods and uses AI-assisted analysis to summarize incidents, detect issues, and identify possible operational problems from runtime logs.
+This project simulates a backend application running inside Kubernetes and generates realistic operational logs such as payment failures, database latency warnings, authentication activity, and application errors.
+
+The generated logs are collected from Kubernetes pods and analyzed using Python and AI-assisted summarization workflows.
 
 ---
 
 ## Features
 
-- Flask application deployed on Kubernetes
-- Dockerized application
+- Flask backend service deployed on Kubernetes
+- Dockerized Python application
 - Kubernetes Deployment and Service
 - Multiple pod replicas
-- Real-time log generation
+- Realistic operational log generation
+- AI-assisted incident analysis
 - Kubernetes log inspection using kubectl
-- AI-assisted incident summarization using OpenAI
-- Python-based automation workflow
+- Python automation workflow
 
 ---
 
@@ -24,15 +26,15 @@ This project simulates application logs inside Kubernetes pods and uses AI-assis
 ```text
 User Requests
       ↓
-Flask Application
+Flask Backend Service
       ↓
 Kubernetes Pods
       ↓
 Application Logs
       ↓
-Python Analyzer Script
+Python Log Analyzer
       ↓
-OpenAI Log Summary
+AI Incident Summary
 ```
 
 ---
@@ -63,6 +65,29 @@ k8s-ai-log-analyzer/
 │   ├── deployment.yaml
 │   └── service.yaml
 └── README.md
+```
+
+---
+
+## Simulated Incidents
+
+The application generates realistic backend operational logs including:
+
+- User login activity
+- Payment gateway slowdowns
+- Payment service timeouts
+- Database latency warnings
+- Application crash simulations
+- Health check events
+
+Example logs:
+
+```text
+INFO: User login attempt: admin
+WARNING: Payment gateway slow response
+ERROR: Payment service timeout
+WARNING: Database query latency high
+ERROR: Application crash simulated
 ```
 
 ---
@@ -104,17 +129,16 @@ Port-forward the application:
 kubectl port-forward service/log-generator-service 5000:80
 ```
 
-Open in browser:
+Open endpoints in browser:
 
 ```text
-http://localhost:5000
-```
-
-Generate simulated errors:
-
-```text
+http://localhost:5000/login
+http://localhost:5000/payment
+http://localhost:5000/database
 http://localhost:5000/error
 ```
+
+These endpoints generate operational logs inside Kubernetes pods.
 
 ---
 
@@ -134,19 +158,19 @@ python analyzer/analyze_logs.py
 
 The analyzer:
 - collects Kubernetes pod logs
-- sends logs for AI-based summarization
-- identifies warnings and errors
-- generates incident summaries
+- identifies operational issues
+- summarizes incidents
+- highlights warnings and failures
 
 ---
 
-## Example AI Summary
+## Example Incident Summary
 
 ```text
-- Multiple database timeout errors detected
-- High response latency observed
-- Application operational but unstable
-- Recommended investigation into backend dependencies
+- Payment service instability detected
+- Database latency warnings observed
+- Multiple application failures recorded
+- Authentication activity appears normal
 ```
 
 ---
@@ -157,9 +181,9 @@ This project was built to learn:
 
 - Kubernetes deployments
 - Container orchestration
-- Pod logging and debugging
-- Kubernetes networking basics
-- Infrastructure automation workflows
+- Kubernetes logging workflows
+- Pod debugging and observability
+- Infrastructure automation
 - AI-assisted operational analysis
 
 ---
@@ -178,3 +202,4 @@ This project was built to learn:
 ## Author
 
 Built as a hands-on Kubernetes and platform engineering learning project.
+
